@@ -7,18 +7,26 @@ Paramètre : limite (nombre max de récits affichés) {%- endcomment -%}
 {%- assign recits = posts | where_exp: "p", "p.epingle == nil" | where_exp: "p", "p.explicatif == nil" -%}
 {%- assign limite = include.limite | default: 1000 -%}
 
+<div class="rubriques">
 {% if epingles.size > 0 %}
+<section class="rubrique-bloc">
 <h3 class="rubrique">{{ t.epingles }}</h3>
 <div class="grille-posts">{% for post in epingles %}{% include post-card.html post=post %}{% endfor %}</div>
+</section>
 {% endif %}
 
 {% if recits.size > 0 %}
+<section class="rubrique-bloc">
 <h3 class="rubrique">{{ t.recits }}</h3>
 <div class="grille-posts">{% for post in recits limit: limite %}{% include post-card.html post=post %}{% endfor %}</div>
 {% if recits.size > limite %}<p><a href="{{ t.journal_url | relative_url }}">{{ t.tout_journal }}</a></p>{% endif %}
+</section>
 {% endif %}
 
 {% if explicatifs.size > 0 %}
+<section class="rubrique-bloc">
 <h3 class="rubrique">{{ t.explicatifs }}</h3>
 <div class="grille-posts">{% for post in explicatifs %}{% include post-card.html post=post %}{% endfor %}</div>
+</section>
 {% endif %}
+</div>

@@ -41,7 +41,7 @@ h1, h2, h3, .page__title, .site-title { letter-spacing: 0.01em; }
 figure.empile { > a, > img { width: 100%; margin-bottom: 1em; } img { display: block; width: 100%; margin-bottom: 0; }
   > a:last-of-type, > img:last-of-type { margin-bottom: 0; } }
 /* Légendes : lisibles et collées sous la photo */
-.page__content figure figcaption { font-size: 0.85em; margin: 0.35em 0 0; }
+.page__content figure figcaption { font-size: 0.85em; margin: 0.35em 0 0; text-align: center; }
 /* Le titre de la page n'est pas un lien vers elle-même */
 .page__title a { color: inherit; text-decoration: none; pointer-events: none; }
 details.english { margin-top: 2em; padding: 0.8em 1em; background: $ecume; border-radius: 6px; font-size: 0.9em;
@@ -53,11 +53,16 @@ $gouttiere: clamp(1em, 3vw, 4em);
   max-width: none !important;
   padding-inline: $gouttiere;
 }
-// Texte des articles : colonne lisible, centrée à côté du profil
-body:not(.wide) .page {
-  @include breakpoint($large) { padding-inline-end: 0; }
-  .page__inner-wrap { float: none; max-width: 900px; margin-inline: auto; }
+// Toutes les pages : le contenu occupe toute la place à droite du profil
+.page { @include breakpoint($large) { padding-inline-end: 0; } }
+.page__inner-wrap { max-width: none; }
+.page .page__inner-wrap .page__content { width: 100%; }
+img, video, iframe { max-width: 100%; }
+// Photos des articles : jamais plus hautes que l'écran, centrées
+.page__content .photo img, .page__content figure img, .page__content p > img {
+  width: auto !important; max-width: 100%; max-height: 80vh; margin-inline: auto;
 }
+.page__content figure.empile > a { text-align: center; }
 .sidebar { @include breakpoint($x-large) { width: calc(#{$right-sidebar-width} - 2em); } }
 
 /* ---------- Accueil ---------- */
@@ -234,13 +239,14 @@ body:not(.wide) .page {
 .sidebar .sponsor { font-size: 0.85em; padding: 1em; p { font-size: 1em; } .sponsor__titre { font-size: 1.25em; } }
 
 /* ---------- Bouton de langue ---------- */
+// Hors du menu pour que le thème range bien les liens dans ☰ quand la place manque
+.masthead__menu { display: flex; align-items: center; .greedy-nav { flex: 1; min-width: 0; } }
 .langue {
-  order: 2; align-self: center; margin-left: 0.8em; padding: 0.15em 0.55em;
+  flex: none; margin-left: 0.8em; padding: 0.15em 0.55em;
   border: 2px solid $marine; border-radius: 6px; font-weight: bold; font-size: 0.8em;
   text-decoration: none; color: $marine; white-space: nowrap;
   &:hover { background: $marine; color: #fff; }
 }
-.greedy-nav .greedy-nav__toggle { order: 3; }
 
 /* ---------- Mobile ---------- */
 .page__content table { display: block; overflow-x: auto; }
@@ -265,5 +271,7 @@ body:not(.wide) .page {
 }
 
 /* ---------- Rubriques du journal ---------- */
-.rubrique { font-size: 1.1em; text-transform: uppercase; letter-spacing: 0.06em; color: $muted-text-color; margin: 1.8em 0 0.8em; border: 0; }
-.accueil__journal .rubrique:first-of-type, .page__content > .rubrique:first-child { margin-top: 0.5em; }
+// Les rubriques se placent côte à côte quand l'écran est assez large
+.rubriques { display: flex; flex-wrap: wrap; gap: 1.8em 2em; }
+.rubrique-bloc { flex: 1 1 480px; min-width: 0; }
+.rubrique { font-size: 1.1em; text-transform: uppercase; letter-spacing: 0.06em; color: $muted-text-color; margin: 0.5em 0 0.8em; border: 0; }

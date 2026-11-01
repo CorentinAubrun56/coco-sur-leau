@@ -21,13 +21,13 @@
             <li class="masthead__menu-item"><a href="{{ link.url | relative_url }}">{{ link.title }}</a></li>
           {%- endfor -%}
         </ul>
-        <a class="langue" href="{{ url_autre | relative_url }}" hreflang="{{ autre }}" lang="{{ autre }}" title="{{ t.autre_langue }}">{{ t.autre_code }}</a>
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Menu</span>
           <div class="navicon"></div>
         </button>
         <ul class="hidden-links hidden"></ul>
       </nav>
+      <a class="langue" href="{{ url_autre | relative_url }}" hreflang="{{ autre }}" lang="{{ autre }}" title="{{ t.autre_langue }}">{{ t.autre_code }}</a>
     </div>
   </div>
 </div>
