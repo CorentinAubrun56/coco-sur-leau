@@ -13,7 +13,8 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  # false : annuler un déploiement en cours bloque GitHub Pages ; les lancements attendent leur tour
+  cancel-in-progress: false
 
 jobs:
   build:

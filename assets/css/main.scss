@@ -16,7 +16,8 @@ $link-color-hover: $rouge;
 $link-color-visited: $marine;
 $masthead-link-color: $marine;
 $masthead-link-color-hover: $rouge;
-$sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+// « Twemoji Country Flags » ne contient que les drapeaux : Windows n'affiche pas les emojis drapeaux (🇦🇺 → « AU »)
+$sans-serif: "Twemoji Country Flags", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $sans-serif-narrow: $sans-serif;
 $global-font-family: $sans-serif;
 $caption-font-family: $sans-serif;
@@ -25,6 +26,13 @@ $header-font-family: $sans-serif;
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
 @import "minimal-mistakes";
+
+@font-face {
+  font-family: "Twemoji Country Flags";
+  unicode-range: U+1F1E6-1F1FF, U+1F3F4, U+E0062-E007F;
+  src: url("https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2") format("woff2");
+  font-display: swap;
+}
 
 /* ---------- Général ---------- */
 h1, h2, h3, .page__title, .site-title { letter-spacing: 0.01em; }
@@ -70,7 +78,8 @@ img, video, iframe { max-width: 100%; }
   display: grid; gap: 1em 2em; align-items: center; grid-template-columns: minmax(0, 1fr);
   background: linear-gradient(135deg, $marine-fonce, $marine); color: #fff;
   border-radius: 12px; padding: clamp(1em, 2vw, 1.8em); margin: 0 0 2em;
-  h2 { font-size: 1.8em; margin: 0; border: 0; a { color: #fff; text-decoration: none; } }
+  // « Mini Transat 2027 » toujours sur une seule ligne, un peu plus petit sur téléphone
+  h2 { font-size: clamp(1.4em, 6vw, 1.8em); white-space: nowrap; margin: 0; border: 0; a { color: #fff; text-decoration: none; } }
   p { margin: 0.2em 0; }
   .surtitre { text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.75em; color: lighten($rouge, 15%); margin: 0; }
   .parcours-ligne { font-family: $header-font-family; font-size: 1.2em; }
@@ -103,7 +112,7 @@ img, video, iframe { max-width: 100%; }
 // Accueil : bandeau photo moins haut pour voir le journal sans défiler
 .page-accueil .page__hero--overlay { padding: 1em 0 0.5em; margin-bottom: 1.2em; }
 .page-accueil .page__hero--overlay .page__title { font-size: 2.6em; margin: 0; }
-.page-accueil .page__hero--overlay .page__lead { margin: 0.2em 0 0.5em; font-size: 1.15em; }
+.page-accueil .page__hero--overlay .page__lead { margin: 0.2em 0 0.5em; font-size: 1.15em; max-width: none; }
 .page-accueil .page__hero--overlay .btn { font-size: 0.9em; padding: 0.4em 1em; }
 .page-accueil .page__inner-wrap { margin-top: 0; }
 .accueil {
