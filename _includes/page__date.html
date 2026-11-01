@@ -1,0 +1,4 @@
+{%- comment -%} Surcharge du thème : date de publication, seulement sur les articles {%- endcomment -%}
+{% if page.collection == "posts" %}
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> {% if page.lang == "en" %}Published:{% else %}Publié le :{% endif %}</strong> <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}">{% include date.html date=page.date %}</time></p>
+{% endif %}

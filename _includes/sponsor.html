@@ -1,0 +1,6 @@
+{%- assign t = site.data.i18n[page.lang] | default: site.data.i18n.fr -%}
+<aside class="sponsor{% if include.classe %} {{ include.classe }}{% endif %}">
+  <p class="sponsor__titre">{{ t.sponsor_titre }}</p>
+  <p>{{ t.sponsor_texte }}</p>
+  <a class="btn btn--primary" href="mailto:{{ site.email_sponsor }}?subject={{ t.sponsor_sujet | replace: ' ', '%20' }}">{{ t.sponsor_bouton }}</a>
+</aside>

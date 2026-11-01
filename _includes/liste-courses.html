@@ -1,0 +1,12 @@
+{%- assign t = site.data.i18n[page.lang] -%}
+{%- assign maintenant = site.time | date: "%s" | plus: 0 -%}
+{%- assign donnees = site.data.courses | sort: "depart" -%}
+<h2>{{ t.a_venir }}</h2>
+<div class="liste-courses">
+{% for c in donnees %}{% assign tc = c.depart | date: "%s" | plus: 0 %}{% if tc > maintenant %}{% assign doc = site.courses | where: "ref", c.ref | where: "lang", page.lang | first %}{% include course-card.html course=doc %}{% endif %}{% endfor %}
+</div>
+{% capture passees %}{% for c in donnees reversed %}{% assign tc = c.depart | date: "%s" | plus: 0 %}{% if tc <= maintenant %}{% assign doc = site.courses | where: "ref", c.ref | where: "lang", page.lang | first %}{% include course-card.html course=doc %}{% endif %}{% endfor %}{% endcapture %}
+{% if passees != "" %}
+<h2>{{ t.courues }}</h2>
+<div class="liste-courses">{{ passees }}</div>
+{% endif %}

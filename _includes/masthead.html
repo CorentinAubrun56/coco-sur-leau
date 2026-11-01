@@ -1,0 +1,33 @@
+{%- comment -%} Surcharge du thème : menu selon la langue + bouton FR/EN {%- endcomment -%}
+{%- assign lang = page.lang | default: "fr" -%}
+{%- assign t = site.data.i18n[lang] -%}
+{%- if lang == "fr" -%}{%- assign autre = "en" -%}{%- else -%}{%- assign autre = "fr" -%}{%- endif -%}
+{%- assign traduction = nil -%}
+{%- if page.ref -%}
+  {%- assign docs = site.posts | concat: site.pages | concat: site.courses -%}
+  {%- for d in docs -%}{%- if d.ref == page.ref and d.lang == autre -%}{%- assign traduction = d -%}{%- break -%}{%- endif -%}{%- endfor -%}
+{%- endif -%}
+{%- assign url_autre = traduction.url | default: site.data.i18n[autre].accueil -%}
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Navigation">
+        <a class="site-title" href="{{ t.accueil | relative_url }}">
+          {{ site.title | escape_once | strip }}
+          <span class="site-subtitle">{{ site.subtitle | escape_once | strip }}</span>
+        </a>
+        <ul class="visible-links">
+          {%- for link in site.data.navigation[lang] -%}
+            <li class="masthead__menu-item"><a href="{{ link.url | relative_url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+        <a class="langue" href="{{ url_autre | relative_url }}" hreflang="{{ autre }}" lang="{{ autre }}" title="{{ t.autre_langue }}">{{ t.autre_code }}</a>
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>

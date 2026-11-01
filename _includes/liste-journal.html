@@ -1,0 +1,24 @@
+{%- comment -%} Journal par rubriques : épinglés (front matter « epingle: 1, 2… » = ordre), récits, puis explicatifs (« explicatif: 1, 2… » = ordre).
+Paramètre : limite (nombre max de récits affichés) {%- endcomment -%}
+{%- assign t = site.data.i18n[page.lang] -%}
+{%- assign posts = site.posts | where: "lang", page.lang -%}
+{%- assign epingles = posts | where_exp: "p", "p.epingle" | sort: "epingle" -%}
+{%- assign explicatifs = posts | where_exp: "p", "p.explicatif" | sort: "explicatif" -%}
+{%- assign recits = posts | where_exp: "p", "p.epingle == nil" | where_exp: "p", "p.explicatif == nil" -%}
+{%- assign limite = include.limite | default: 1000 -%}
+
+{% if epingles.size > 0 %}
+<h3 class="rubrique">{{ t.epingles }}</h3>
+<div class="grille-posts">{% for post in epingles %}{% include post-card.html post=post %}{% endfor %}</div>
+{% endif %}
+
+{% if recits.size > 0 %}
+<h3 class="rubrique">{{ t.recits }}</h3>
+<div class="grille-posts">{% for post in recits limit: limite %}{% include post-card.html post=post %}{% endfor %}</div>
+{% if recits.size > limite %}<p><a href="{{ t.journal_url | relative_url }}">{{ t.tout_journal }}</a></p>{% endif %}
+{% endif %}
+
+{% if explicatifs.size > 0 %}
+<h3 class="rubrique">{{ t.explicatifs }}</h3>
+<div class="grille-posts">{% for post in explicatifs %}{% include post-card.html post=post %}{% endfor %}</div>
+{% endif %}

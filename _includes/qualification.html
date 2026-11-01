@@ -1,0 +1,15 @@
+{%- comment -%} Barre de progression de la qualification Mini Transat. Paramètre : detail (affiche les conditions) {%- endcomment -%}
+{%- assign t = site.data.i18n[page.lang] -%}
+{%- assign q = site.data.classement.qualification -%}
+{%- assign pct = q.milles_course | times: 100 | divided_by: q.objectif_milles_course -%}{%- if pct > 100 -%}{%- assign pct = 100 -%}{%- endif -%}
+<div class="qualif">
+  <p class="qualif__titre">{{ t.qualif_titre }}</p>
+  <div class="qualif__barre" role="progressbar" aria-valuemin="0" aria-valuemax="{{ q.objectif_milles_course }}" aria-valuenow="{{ q.milles_course }}"><span style="width: {{ pct }}%"></span></div>
+  <p class="qualif__detail"><b>{{ q.milles_course }}</b> / {{ q.objectif_milles_course }} {{ t.qualif_milles }}</p>
+  {% if include.detail %}
+  <ul class="qualif__liste">
+    {%- assign lien_base = 'href="' | append: site.baseurl | append: '/' -%}
+    {% for cond in t.qualif_conditions %}<li>{% if q.conditions[forloop.index0] %}✅{% else %}⬜{% endif %} {{ cond | markdownify | remove: "<p>" | remove: "</p>" | replace: 'href="/', lien_base }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+</div>

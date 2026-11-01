@@ -1,0 +1,54 @@
+---
+layout: single
+---
+{%- assign t = site.data.i18n[page.lang] -%}
+{%- assign d = site.data.courses | where: "ref", page.ref | first -%}
+{%- assign maintenant = site.time | date: "%s" | plus: 0 -%}
+{%- assign t_depart = d.depart | date: "%s" | plus: 0 -%}
+{%- assign t_fin = d.fin | default: d.depart | date: "%s" | plus: 0 -%}
+
+<div class="course-entete">
+  <dl class="fiche">
+    <div><dt>{{ t.f_depart }}</dt><dd>{% include date.html date=d.depart jour=true %}{% if d.heure_depart %} · {{ d.heure_depart }}{% else %} <small>{{ t.heure_a_confirmer }}</small>{% endif %}</dd></div>
+    <div><dt>{{ t.f_parcours }}</dt><dd>{{ page.lieu_depart }}{% for e in page.escales %} → <span class="escale">{{ e }}</span>{% endfor %} → {{ page.lieu_arrivee }}</dd></div>
+    {% if page.niveau %}<div><dt>{{ t.f_niveau }}</dt><dd>{{ page.niveau }}</dd></div>{% endif %}
+    <div><dt>{{ t.f_equipage }}</dt><dd>{{ page.equipage | default: "–" }}</dd></div>
+    <div><dt>{{ t.f_categorie }}</dt><dd>{{ page.categorie | default: "–" }}</dd></div>
+    <div><dt>{{ t.f_distance }}</dt><dd>{% if d.distance %}{{ d.distance }} {{ t.milles }}{% else %}<span class="js-distance">–</span> <small>{{ t.estimation }}</small>{% endif %}</dd></div>
+    <div><dt>{{ t.f_coefficient }}</dt><dd>{{ d.coefficient | default: "–" }}</dd></div>
+    <div><dt>{{ t.f_qualificative }}</dt><dd>{% if page.qualificative_texte %}<strong>{{ page.qualificative_texte }}</strong>{% elsif d.qualificative %}{{ t.oui }}{% else %}{{ t.non }}{% endif %}</dd></div>
+  </dl>
+  <div class="course-entete__statut">
+    {% if maintenant < t_depart %}
+      {% include countdown.html cible=d.depart titre=t.avant_depart %}
+    {% elsif page.resultat %}
+      <p class="statut statut--fini">{{ t.course_terminee }}</p>
+      <p class="resultat">{{ page.resultat }}</p>
+    {% elsif maintenant < t_fin %}
+      <p class="statut statut--live">{{ t.course_en_cours }}</p>
+    {% else %}
+      <p class="statut statut--fini">{{ t.resultats_a_venir }}</p>
+    {% endif %}
+    {% if d.suivi %}
+      <a class="btn btn--primary btn--large" href="{{ d.suivi }}" target="_blank" rel="noopener">{{ t.suivi_direct }}</a>
+    {% else %}
+      <p class="petit">{{ t.suivi_bientot }}</p>
+    {% endif %}
+  </div>
+</div>
+
+{% if d.parcours %}
+<h2>{{ t.la_carte }}</h2>
+{% include course-map.html points=d.parcours %}
+{% endif %}
+
+{% if page.regles %}
+<h2>{{ t.regles }}</h2>
+<ul class="regles">
+  {% for r in page.regles %}<li>{% if r.url %}<a href="{{ r.url }}">{{ r.titre }}</a>{% else %}{{ r.titre }}{% endif %}</li>{% endfor %}
+</ul>
+{% endif %}
+
+{{ content }}
+
+<p><a href="{{ t.courses_url | relative_url }}">{{ t.toutes_courses }}</a></p>

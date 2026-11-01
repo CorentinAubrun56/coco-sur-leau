@@ -1,0 +1,24 @@
+{%- comment -%} Classement Classe Mini zoomé sur Corentin. Paramètre : autour (nb de voisins de chaque côté) {%- endcomment -%}
+{%- assign t = site.data.i18n[page.lang] | default: site.data.i18n.fr -%}
+{%- assign c = site.data.classement -%}
+{%- assign autour = include.autour | default: 2 -%}
+<div class="classement">
+  {% assign moi = c.entrees | where: "skipper", c.skipper | first %}
+  {% if moi %}
+    <p class="classement__rang"><b>{{ moi.rang }}<sup>{% if page.lang == "en" %}{% case moi.rang %}{% when 1 %}st{% when 2 %}nd{% when 3 %}rd{% else %}th{% endcase %}{% elsif moi.rang == 1 %}er{% else %}e{% endif %}</sup></b> {{ t.au_championnat }} {{ c.categorie }} {{ c.saison }}</p>
+    {% assign min = moi.rang | minus: autour %}{% assign max = moi.rang | plus: autour %}
+    <table>
+      <thead><tr><th>#</th><th>{{ t.c_skipper }}</th><th>{{ t.c_bateau }}</th><th>{{ t.c_points }}</th></tr></thead>
+      <tbody>
+      {% for e in c.entrees %}{% if e.rang >= min and e.rang <= max %}
+        <tr{% if e.skipper == c.skipper %} class="moi"{% endif %}><td>{{ e.rang }}</td><td>{{ e.skipper }}</td><td>{{ e.bateau }}</td><td>{{ e.points }}</td></tr>
+      {% endif %}{% endfor %}
+      </tbody>
+    </table>
+    <p class="classement__maj">{{ t.maj_le }} {% include date.html date=c.mis_a_jour %} · <a href="{{ c.source }}">{{ t.classement_complet }}</a></p>
+  {% else %}
+    <p class="classement__vide">{{ t.pas_de_classement }}</p>
+  {% endif %}
+
+  {% include qualification.html detail=true %}
+</div>

@@ -1,0 +1,24 @@
+# Données communes aux deux langues, une entrée par course.
+# Le texte (titre, lieux, règles, récit) est dans _courses/<ref>.md (FR) et _courses/en/<ref>.md (EN).
+- ref: mini-transat-2027
+  depart: 2027-09-12
+  # heure_depart: "13:30"      # quand elle sera connue
+  # fin: 2027-11-10            # date de fin estimée (sert à afficher « course en cours »)
+  distance:                    # milles officiels ; vide = estimation calculée sur la carte
+  coefficient:
+  qualificative: false
+  suivi:                       # lien de la cartographie en direct
+  # Tracé indicatif : les points sans « nom » servent juste à contourner les côtes.
+  parcours:
+    - { nom: "La Rochelle", lat: 46.15, lon: -1.17, type: depart }
+    - { lat: 45.6, lon: -2.6 }
+    - { lat: 43.6, lon: -9.6 }
+    - { lat: 38.5, lon: -10.3 }
+    - { lat: 33.0, lon: -12.6 }
+    - { nom: "Las Palmas", lat: 28.13, lon: -15.42, type: escale }
+    - { lat: 21.0, lon: -21.5 }
+    - { lat: 10.0, lon: -26.5 }
+    - { lat: 1.0, lon: -30.0 }
+    - { lat: -8.5, lon: -34.0 }
+    - { lat: -12.4, lon: -37.6 }
+    - { nom: "Salvador de Bahia", lat: -12.97, lon: -38.51, type: arrivee }

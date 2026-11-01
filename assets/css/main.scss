@@ -1,0 +1,259 @@
+---
+search: false
+---
+
+@charset "utf-8";
+
+// Couleurs de Big Bounce : bleu nuit, rouge des numéros, écume
+$marine: #0b3c5d;
+$marine-fonce: #061e30;
+$rouge: #e8412c;
+$ecume: #f3f7fa;
+
+$primary-color: $marine;
+$link-color: $marine;
+$link-color-hover: $rouge;
+$link-color-visited: $marine;
+$masthead-link-color: $marine;
+$masthead-link-color-hover: $rouge;
+$caption-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$max-width: 100%;
+$header-font-family: "Barlow Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
+@import "minimal-mistakes";
+
+/* ---------- Général ---------- */
+h1, h2, h3, .page__title, .site-title { letter-spacing: 0.01em; }
+.site-title { font-family: $header-font-family; font-size: 1.4em; }
+.btn--primary { background-color: $rouge; &:hover { background-color: darken($rouge, 10%); } }
+.page__hero--overlay .btn { background-color: $rouge; color: #fff; border: 0; margin-right: 0.5em; margin-bottom: 0.5em; }
+.page__hero--overlay .page__title { font-size: 3.4em; }
+.note { background: $ecume; border-left: 4px solid $marine; padding: 0.8em 1em; font-size: 0.9em; }
+.petit { font-size: 0.8em; color: $muted-text-color; }
+.photo-portrait { display: block; width: 100%; border-radius: 12px; margin-bottom: 1.5em; }
+.photo-verticale { max-width: 480px; margin-inline: auto; }
+details.english { margin-top: 2em; padding: 0.8em 1em; background: $ecume; border-radius: 6px; font-size: 0.9em;
+  summary { cursor: pointer; font-weight: bold; } }
+
+/* ---------- Mise en page fluide : le site suit la largeur de la fenêtre ---------- */
+$gouttiere: clamp(1em, 3vw, 4em);
+#main, .masthead__inner-wrap, .page__footer footer, .page__hero--overlay .wrapper {
+  max-width: none !important;
+  padding-inline: $gouttiere;
+}
+// Texte des articles : colonne lisible, centrée à côté du profil
+body:not(.wide) .page {
+  @include breakpoint($large) { padding-inline-end: 0; }
+  .page__inner-wrap { float: none; max-width: 900px; margin-inline: auto; }
+}
+.sidebar { @include breakpoint($x-large) { width: calc(#{$right-sidebar-width} - 2em); } }
+
+/* ---------- Accueil ---------- */
+.bandeau-transat {
+  display: grid; gap: 1em 2em; align-items: center; grid-template-columns: minmax(0, 1fr);
+  background: linear-gradient(135deg, $marine-fonce, $marine); color: #fff;
+  border-radius: 12px; padding: clamp(1em, 2vw, 1.8em); margin: 0 0 2em;
+  h2 { font-size: 1.8em; margin: 0; border: 0; a { color: #fff; text-decoration: none; } }
+  p { margin: 0.2em 0; }
+  .surtitre { text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.75em; color: lighten($rouge, 15%); margin: 0; }
+  .parcours-ligne { font-family: $header-font-family; font-size: 1.2em; }
+  .btn { margin-top: 0.4em; }
+  .countdown { margin: 0 !important; }
+  .countdown .countdown__cases { justify-content: flex-start; }
+  .countdown .countdown__cases span { background: rgba(255,255,255,0.12) !important; }
+  // Tablette paysage : texte + compteur à gauche, carte à droite
+  @include breakpoint($large) {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    grid-template-areas: "texte carte" "compteur carte";
+    .bandeau-transat__texte { grid-area: texte; align-self: end; }
+    .bandeau-transat__compteur { grid-area: compteur; align-self: start; }
+    .bandeau-transat__carte { grid-area: carte; }
+  }
+  // Grand écran : tout sur une ligne, pour laisser voir le journal
+  @include breakpoint($x-large) {
+    grid-template-columns: minmax(0, 1fr) auto clamp(220px, 20vw, 380px);
+    grid-template-areas: "texte compteur carte";
+    .bandeau-transat__texte, .bandeau-transat__compteur { align-self: center; }
+    .countdown b { font-size: 1.8em; }
+    .countdown .countdown__cases span { min-width: 3.1em; padding: 0.4em 0.2em; }
+  }
+}
+.bandeau-transat__carte img {
+  display: block; width: 100%; height: auto;
+  border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+.bandeau-transat__texte p:not(.surtitre):not(.parcours-ligne) { font-size: 0.85em; opacity: 0.9; }
+// Accueil : bandeau photo moins haut pour voir le journal sans défiler
+.page-accueil .page__hero--overlay { padding: 1em 0 0.5em; margin-bottom: 1.2em; }
+.page-accueil .page__hero--overlay .page__title { font-size: 2.6em; margin: 0; }
+.page-accueil .page__hero--overlay .page__lead { margin: 0.2em 0 0.5em; font-size: 1.15em; }
+.page-accueil .page__hero--overlay .btn { font-size: 0.9em; padding: 0.4em 1em; }
+.page-accueil .page__inner-wrap { margin-top: 0; }
+.accueil {
+  display: grid; gap: 2em 3em; grid-template-columns: minmax(0, 1fr);
+  @include breakpoint($x-large) { grid-template-columns: minmax(0, 1fr) 340px; }
+  h2 { margin-top: 0; border: 0; }
+}
+.accueil__journal .grille-posts { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.widget { margin-bottom: 2.2em; font-size: 0.9em;
+  h2 { font-size: 1.4em; margin-bottom: 0.5em; } }
+.page__hero--overlay .page__lead { max-width: 40em; }
+
+/* ---------- Compte à rebours ---------- */
+.countdown {
+  text-align: center;
+  .countdown__titre { font-family: $header-font-family; font-size: 1.2em; margin: 0 0 0.4em; }
+  .countdown__cases { display: flex; justify-content: center; gap: 0.5em; }
+  .countdown__cases span { display: flex; flex-direction: column; min-width: 4.2em; padding: 0.5em 0.3em; border-radius: 8px; background: rgba(255,255,255,0.12); }
+  b { font-family: $header-font-family; font-size: 2.6em; line-height: 1; font-variant-numeric: tabular-nums; }
+  small { font-size: 0.65em; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.8; }
+}
+.page__content .countdown, .course-entete .countdown { margin: 1.5em 0;
+  .countdown__cases span { background: $marine; color: #fff; } }
+.countdown--petit { margin: 0.8em 0 !important;
+  b { font-size: 1.5em; } .countdown__cases span { min-width: 3.2em; } }
+
+/* ---------- Brèves ---------- */
+.breves { list-style: none; margin: 0 0 1em; padding: 0; }
+.breve { margin: 0 0 0.9em; padding-left: 0.9em; border-left: 3px solid $rouge; font-size: 0.9em;
+  time { display: block; font-size: 0.8em; color: $muted-text-color; text-transform: uppercase; letter-spacing: 0.05em; } }
+
+/* ---------- Cartes de posts ---------- */
+.grille-posts { display: grid; gap: 1.5em; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.carte-post {
+  display: flex; flex-direction: column; text-decoration: none; color: inherit;
+  border-radius: 10px; overflow: hidden; background: #fff; box-shadow: 0 2px 10px rgba(6,30,48,0.1);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  &:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(6,30,48,0.15); color: inherit; }
+  img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: center 30%; }
+  .carte-post__corps { padding: 1em 1.2em; }
+  time { font-size: 0.75em; color: $muted-text-color; text-transform: uppercase; letter-spacing: 0.05em; }
+  h3 { margin: 0.2em 0 0.4em; color: $marine; }
+  p { font-size: 0.85em; margin: 0; }
+}
+
+/* ---------- Courses ---------- */
+.liste-courses { display: grid; gap: 1em; }
+.carte-course {
+  display: flex; gap: 1em; align-items: stretch; text-decoration: none; color: inherit;
+  border: 1px solid $border-color; border-radius: 10px; overflow: hidden;
+  &:hover { border-color: $marine; color: inherit; }
+  h3 { margin: 0 0 0.2em; color: $marine; }
+  p { margin: 0 0 0.5em; font-size: 0.85em; }
+}
+.carte-course__date {
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  min-width: 5.5em; background: $marine; color: #fff; padding: 0.6em; font-family: $header-font-family; line-height: 1.1;
+  b { font-size: 2em; } span { text-transform: uppercase; font-size: 0.85em; } small { opacity: 0.7; }
+}
+.carte-course__corps { padding: 0.8em 0.8em 0.8em 0; }
+.pastilles { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4em;
+  li { font-size: 0.7em; padding: 0.15em 0.6em; border-radius: 999px; background: $ecume; margin: 0; }
+  .pastille--qualif { background: $rouge; color: #fff; } }
+
+.course-entete {
+  display: grid; gap: 1.5em; grid-template-columns: 1fr; margin-bottom: 1.5em;
+  @include breakpoint($large) { grid-template-columns: 1.3fr 1fr; }
+}
+.course-entete__statut { text-align: center; }
+.fiche { margin: 0; font-size: 0.9em;
+  > div { display: grid; grid-template-columns: 8.5em 1fr; gap: 0.5em; padding: 0.45em 0; border-bottom: 1px solid $border-color; }
+  dt { font-weight: bold; color: $marine; } dd { margin: 0; }
+  .escale { color: darken(#f2a007, 10%); font-weight: bold; } }
+.statut { font-family: $header-font-family; font-size: 1.5em; margin: 0.5em 0; }
+.statut--live { color: $rouge; }
+.regles li { margin-bottom: 0.3em; }
+
+/* ---------- Cartes Leaflet ---------- */
+.carte { display: block; margin: 1em 0 2em; }
+.carte__map { width: 100%; height: 420px; border-radius: 10px; z-index: 0; }
+.carte__legende { font-size: 0.75em; color: $muted-text-color; margin-top: 0.5em; }
+.carte__etiquette { font-family: $header-font-family; font-weight: 700; font-size: 14px; }
+
+/* ---------- Classement ---------- */
+.classement {
+  font-size: 0.9em;
+  table { display: table; font-size: 0.9em; }
+  tr.moi td { background: lighten($rouge, 38%); font-weight: bold; }
+  .classement__rang b { font-family: $header-font-family; font-size: 2.4em; color: $rouge; }
+  .classement__vide { color: $muted-text-color; }
+  .classement__maj { font-size: 0.8em; color: $muted-text-color; }
+}
+.qualif { margin: 1em 0;
+  .qualif__titre { font-weight: bold; margin: 0 0 0.4em; }
+  .qualif__barre { height: 10px; border-radius: 999px; background: $ecume; overflow: hidden; box-shadow: inset 0 0 0 1px $border-color;
+    span { display: block; height: 100%; background: linear-gradient(90deg, $marine, $rouge); } }
+  .qualif__detail { margin: 0.4em 0 0; font-size: 0.85em; } }
+
+/* ---------- J'aime & commentaires ---------- */
+.soutien {
+  margin-top: 3em; padding-top: 1.5em; border-top: 1px solid $border-color;
+  h2 { margin: 1.5em 0 0.5em; border: 0; }
+  .soutien__nbcom { color: $muted-text-color; font-size: 0.7em; }
+  form { margin-top: 1.5em; }
+  label { font-size: 0.85em; font-weight: bold; }
+  textarea { resize: vertical; }
+}
+.soutien__demo { font-size: 0.75em; padding: 0.4em 0.8em; background: #fff3cd; border-radius: 4px; }
+.soutien__like {
+  display: inline-flex; align-items: center; gap: 0.4em; cursor: pointer;
+  font-size: 1em; padding: 0.5em 1.1em; border-radius: 999px;
+  border: 2px solid $rouge; background: #fff; color: $rouge; font-weight: bold;
+  .soutien__coeur { font-size: 1.3em; line-height: 1; transition: transform 0.2s ease; }
+  &.est-aime { background: $rouge; color: #fff; .soutien__coeur { transform: scale(1.2); } }
+}
+.soutien__liste { list-style: none; margin: 1.5em 0 0; padding: 0;
+  li { background: $ecume; border-radius: 8px; padding: 0.7em 1em; margin-bottom: 0.7em; font-size: 0.9em; }
+  p { margin: 0; } time { color: $muted-text-color; font-size: 0.85em; } }
+.soutien__piege { position: absolute; left: -9999px; }
+.soutien__statut { font-size: 0.85em; }
+
+/* ---------- Sponsors ---------- */
+.sponsor {
+  margin: 2em 0; padding: 1.2em 1.4em; border-radius: 10px;
+  background: linear-gradient(135deg, $marine-fonce, $marine); color: #fff;
+  p { margin: 0 0 0.8em; font-size: 0.9em; }
+  .sponsor__titre { font-family: $header-font-family; font-size: 1.4em; margin-bottom: 0.4em; }
+  .sponsor__mail { margin: 0.6em 0 0; font-size: 0.75em; a { color: #fff; } }
+  .btn { margin: 0; }
+}
+.sidebar { opacity: 1; }
+.sidebar .sponsor { display: none; @include breakpoint($large) { display: block; } }
+.sponsor-mobile { padding: 0 1em; max-width: 600px; margin: 0 auto; @include breakpoint($large) { display: none; } }
+.sidebar .sponsor { font-size: 0.85em; padding: 1em; p { font-size: 1em; } .sponsor__titre { font-size: 1.25em; } }
+
+/* ---------- Bouton de langue ---------- */
+.langue {
+  order: 2; align-self: center; margin-left: 0.8em; padding: 0.15em 0.55em;
+  border: 2px solid $marine; border-radius: 6px; font-weight: bold; font-size: 0.8em;
+  text-decoration: none; color: $marine; white-space: nowrap;
+  &:hover { background: $marine; color: #fff; }
+}
+.greedy-nav .greedy-nav__toggle { order: 3; }
+
+/* ---------- Mobile ---------- */
+.page__content table { display: block; overflow-x: auto; }
+@media (max-width: 600px) {
+  .page__hero--overlay { padding: 2em 0; }
+  .page__hero--overlay .page__title { font-size: 2.4em; }
+  .page__hero--overlay .page__lead { font-size: 1.1em; }
+  .countdown b { font-size: 1.9em; }
+  .countdown .countdown__cases { gap: 0.3em; }
+  .countdown .countdown__cases span { min-width: 0; flex: 1; }
+  .fiche > div { grid-template-columns: 1fr; gap: 0.1em; }
+  .carte__map { height: 300px; }
+  .carte-course__date { min-width: 4.5em; }
+}
+
+/* ---------- Photo de profil : ronde, recadrée sur le visage, jamais déformée ---------- */
+.author__avatar img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 54% 35%;
+  border-radius: 50%;
+}
+
+/* ---------- Rubriques du journal ---------- */
+.rubrique { font-size: 1.1em; text-transform: uppercase; letter-spacing: 0.06em; color: $muted-text-color; margin: 1.8em 0 0.8em; border: 0; }
+.accueil__journal .rubrique:first-of-type, .page__content > .rubrique:first-child { margin-top: 0.5em; }

@@ -1,0 +1,28 @@
+# Classement Classe Mini, zoomé sur Corentin.
+# À mettre à jour à la main après chaque course depuis https://www.classemini.com/
+# (le site de la Classe Mini ne propose pas d'API publique pour l'automatiser).
+
+mis_a_jour: ""            # ex. 2027-04-12
+saison: 2027
+categorie: "Proto"        # Big Bounce #1019 est un proto
+source: "https://www.classemini.com/"
+skipper: "Corentin Aubrun"
+
+# Laisser vide tant qu'il n'y a pas de classement. Exemple :
+# entrees:
+#   - { rang: 11, skipper: "Prénom Nom", bateau: 1002, points: 812 }
+#   - { rang: 12, skipper: "Corentin Aubrun", bateau: 1019, points: 790 }
+#   - { rang: 13, skipper: "Prénom Nom", bateau: 987, points: 765 }
+entrees: []
+
+# Qualification Mini Transat (Règlement Mini 2026, articles R-8-c et R-8-e) :
+# 1500 milles en course sur le bateau inscrit, depuis le 1er janvier de l'année n-5.
+qualification:
+  milles_course: 0
+  objectif_milles_course: 1500
+  # Dans l'ordre des conditions affichées (textes dans _data/i18n.yml > qualif_conditions) :
+  conditions:
+    - false   # au moins 2 épreuves, dont une en solitaire
+    - false   # une course de plus de 500 milles sans escale
+    - false   # une épreuve de niveau C ou B finie l'année de la Transat
+    - false   # parcours hors course de 1000 milles en solitaire

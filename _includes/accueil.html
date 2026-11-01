@@ -1,0 +1,52 @@
+{%- assign t = site.data.i18n[page.lang] -%}
+{%- assign maintenant = site.time | date: "%s" | plus: 0 -%}
+{%- assign transat_d = site.data.courses | where: "ref", "mini-transat-2027" | first -%}
+{%- assign transat = site.courses | where: "ref", "mini-transat-2027" | where: "lang", page.lang | first -%}
+{%- assign posts = site.posts | where: "lang", page.lang -%}
+
+<section class="bandeau-transat">
+  <div class="bandeau-transat__texte">
+    <p class="surtitre">{{ t.objectif }}</p>
+    <h2><a href="{{ transat.url | relative_url }}">Mini Transat 2027</a></h2>
+    <p class="parcours-ligne">La Rochelle → Las Palmas → Salvador de Bahia</p>
+    <p>{{ t.depart_le }} {% include date.html date=transat_d.depart jour=true %}</p>
+    <a class="btn btn--inverse" href="{{ transat.url | relative_url }}">{{ t.voir_parcours }}</a>
+  </div>
+  <a class="bandeau-transat__carte" href="{{ transat.url | relative_url }}"><img src="{{ '/assets/images/posts/mini-transat-2027/carte-parcours.jpg' | relative_url }}" alt="La Rochelle → Las Palmas → Salvador de Bahia" loading="lazy"></a>
+  <div class="bandeau-transat__compteur">{% include countdown.html cible=transat_d.depart %}</div>
+</section>
+
+<div class="accueil">
+  <section class="accueil__journal" id="journal">
+    <h2>{{ t.journal }}</h2>
+    {% include liste-journal.html limite=6 %}
+  </section>
+
+  <aside class="accueil__cote">
+    <section class="widget">
+      <h2>{{ t.en_bref }}</h2>
+      {% include news.html limit=3 %}
+      <a href="{{ t.breves_url | relative_url }}">{{ t.toutes_breves }}</a>
+    </section>
+
+    <section class="widget">
+      <h2>{{ t.prochaine_course }}</h2>
+      {%- assign prochaine = nil -%}
+      {%- assign donnees = site.data.courses | sort: "depart" -%}
+      {%- for c in donnees -%}{%- assign tc = c.depart | date: "%s" | plus: 0 -%}{%- if tc > maintenant and c.ref != "mini-transat-2027" -%}{%- assign prochaine = c -%}{%- break -%}{%- endif -%}{%- endfor -%}
+      {% if prochaine %}
+        {% assign doc = site.courses | where: "ref", prochaine.ref | where: "lang", page.lang | first %}
+        {% include course-card.html course=doc %}
+        {% include countdown.html cible=prochaine.depart petit=true %}
+      {% else %}
+        <p>{{ t.calendrier_bientot }}</p>
+        <a href="{{ t.courses_url | relative_url }}">{{ t.calendrier }}</a>
+      {% endif %}
+    </section>
+
+    <section class="widget">
+      {% include qualification.html %}
+      <a href="{{ t.classement_url | relative_url }}">{{ t.details }}</a>
+    </section>
+  </aside>
+</div>

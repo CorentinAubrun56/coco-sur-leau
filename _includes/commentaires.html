@@ -1,0 +1,22 @@
+{%- comment -%} J'aime + commentaires sans compte, sous chaque article. Backend : Supabase (voir COMMENTAIRES.md).
+Les deux langues d'un même article partagent les mêmes j'aime et commentaires (identifiant = ref). {%- endcomment -%}
+{%- assign t = site.data.i18n[page.lang] -%}
+{%- assign s = site.commentaires -%}
+{%- if s.supabase_url != "" and s.supabase_key != "" -%}{%- assign mode = "supabase" -%}{%- else -%}{%- assign mode = "demo" -%}{%- endif -%}
+<section class="soutien" id="commentaires" data-mode="{{ mode }}" data-id="{{ page.ref | default: page.url }}"
+  data-url="{{ s.supabase_url }}" data-key="{{ s.supabase_key }}">
+  {% if mode == "demo" %}<p class="soutien__demo">{{ t.demo }}</p>{% endif %}
+  <button type="button" class="soutien__like" aria-pressed="false">
+    <span class="soutien__coeur" aria-hidden="true">♥</span>
+    <span class="soutien__nb">0</span> <span class="soutien__txt">{{ t.jaime }}</span>
+  </button>
+  <h2 class="soutien__titre">{{ t.commentaires }} <span class="soutien__nbcom"></span></h2>
+  <ol class="soutien__liste"></ol>
+  <form class="soutien__form">
+    <label>{{ t.prenom }} <input name="nom" maxlength="60" required autocomplete="given-name"></label>
+    <label>{{ t.commentaire }} <textarea name="message" maxlength="2000" rows="3" required placeholder="{{ t.placeholder }}"></textarea></label>
+    <label class="soutien__piege" aria-hidden="true">Ne pas remplir <input name="site" tabindex="-1" autocomplete="off"></label>
+    <button type="submit" class="btn btn--primary">{{ t.publier }}</button>
+    <p class="soutien__statut" role="status"></p>
+  </form>
+</section>

@@ -1,0 +1,115 @@
+# ---------------------------------------------------------------------------
+# Coco sur l'eau — le journal de bord de Corentin Aubrun en Mini 6.50
+# ---------------------------------------------------------------------------
+
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: default
+
+locale: fr-FR
+lang: fr
+title: "Coco sur l'eau"
+title_separator: "·"
+subtitle: "Mini 6.50 · Big Bounce #1019"
+name: "Corentin Aubrun"
+description: "Le journal de bord de Corentin Aubrun et de son Mini 6.50 Big Bounce #1019, en route vers la Mini Transat 2027."
+url: "https://corentinaubrun56.github.io"
+baseurl: "/coco-sur-leau"
+repository: "CorentinAubrun56/coco-sur-leau"
+og_image: /assets/images/posts/2026-11-01-l-aventure-commence/big-bounce-1019-sur-sa-remorque.jpg
+timezone: Europe/Paris
+date_format: "%d/%m/%Y"
+words_per_minute: 200
+search: false
+breadcrumbs: false
+
+# --- Liens perso ------------------------------------------------------------
+# Pseudo Instagram (sans le @) : /instagram/ redirige vers ce profil
+instagram: "aubruncorentin"
+# Contact affiché dans l'encadré « Recherche de sponsors »
+email_sponsor: "cocoaubrun@gmail.com"
+
+# --- J'aime & commentaires sous chaque article ------------------------------
+# Sans configuration : mode démo en local (stocké dans le navigateur uniquement).
+# Pour qu'ils soient enregistrés et visibles par tous : voir COMMENTAIRES.md
+# (base Supabase gratuite, ~5 minutes).
+commentaires:
+  supabase_url: ""
+  supabase_key: ""
+
+author:
+  name: "Corentin Aubrun"
+  avatar: "/assets/images/corentin-aubrun.jpg"
+
+footer:
+  links:
+    - label: "Instagram"
+      icon: "fab fa-fw fa-instagram"
+      url: "https://www.instagram.com/aubruncorentin/"
+    - label: "Classe Mini"
+      icon: "fas fa-fw fa-sailboat"
+      url: "https://www.classemini.com/"
+
+after_footer_scripts:
+  - https://unpkg.com/leaflet@1.9.4/dist/leaflet.js
+  - /assets/js/coco.js
+
+# --- Contenu ----------------------------------------------------------------
+include:
+  - _pages
+
+collections:
+  courses:
+    output: true
+    permalink: /courses/:path/
+
+permalink: /journal/:year/:month/:title/
+
+defaults:
+  # Français par défaut…
+  - scope: { path: "" }
+    values:
+      lang: fr
+      author: coco
+      author_profile: true
+  # … anglais pour tout ce qui est dans en/ et _courses/en/
+  - scope: { path: "en" }
+    values: { lang: en, locale: en-US, author: coco-en }
+  - scope: { path: "_courses/en" }
+    values: { lang: en, locale: en-US, author: coco-en }
+  - scope: { path: "", type: posts }
+    values:
+      layout: post
+      read_time: true
+      show_date: true
+      share: true
+  - scope: { path: "en", type: posts }
+    values:
+      permalink: /en/journal/:year/:month/:title/
+  - scope: { path: "", type: courses }
+    values:
+      layout: course
+      classes: wide
+  - scope: { path: "_courses/en", type: courses }
+    values:
+      permalink: /en/races/:name/
+  - scope: { path: "_pages" }
+    values:
+      layout: single
+  - scope: { path: "en", type: pages }
+    values:
+      layout: single
+
+# --- Build ------------------------------------------------------------------
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-include-cache
+
+exclude:
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - COMMENTAIRES.md
+  - .jekyll-cache

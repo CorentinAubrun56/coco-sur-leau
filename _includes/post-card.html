@@ -1,0 +1,10 @@
+{%- assign p = include.post -%}
+<a class="carte-post" href="{{ p.url | relative_url }}">
+  {% assign img = p.header.teaser | default: p.header.overlay_image %}
+  {% if img %}<img src="{{ img | relative_url }}" alt="" loading="lazy">{% endif %}
+  <div class="carte-post__corps">
+    <time datetime="{{ p.date | date_to_xmlschema }}">{% include date.html date=p.date %}</time>
+    <h3>{{ p.title }}</h3>
+    {% if p.excerpt %}<p>{{ p.excerpt | strip_html | truncatewords: 28 }}</p>{% endif %}
+  </div>
+</a>

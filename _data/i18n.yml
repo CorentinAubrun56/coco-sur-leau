@@ -1,0 +1,166 @@
+# Textes de l'interface, en français et en anglais.
+# Les liens Markdown [texte](/chemin/) sont permis dans qualif_conditions.
+fr:
+  accueil: /
+  autre_langue: "English"
+  autre_code: EN
+  mois: [janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre]
+  jours: [dimanche, lundi, mardi, mercredi, jeudi, vendredi, samedi]
+  cd_unites: [jours, heures, min, sec]
+  cd_fini: "C'est parti ! ⛵"
+  avant_depart: "Avant le départ"
+  objectif: "Objectif"
+  depart_le: "Départ le"
+  transat_resume: "En solitaire, sans aucun moyen de communication avec la terre."
+  voir_parcours: "Voir le parcours"
+  journal: "Journal de bord"
+  tout_journal: "Tout le journal →"
+  journal_url: /journal/
+  epingles: "📌 À la une"
+  recits: "Derniers récits"
+  explicatifs: "⛵ Posts explicatifs"
+  en_bref: "Dernières News"
+  toutes_breves: "Toutes les brèves →"
+  breves_url: /breves/
+  lire: "Lire →"
+  prochaine_course: "Prochaine course"
+  calendrier_bientot: "Le calendrier 2027 de la Classe Mini sort fin décembre. Les premières courses de qualification démarrent en mars !"
+  calendrier: "Le calendrier →"
+  courses_url: /courses/
+  classement_titre: "Mon classement"
+  classement_url: /classement/
+  details: "Détails →"
+  milles: milles
+  coef: coef.
+  qualificative: "Qualificative"
+  # Fiche course
+  f_depart: "Départ"
+  f_niveau: "Niveau"
+  f_parcours: "Parcours"
+  f_equipage: "Équipage"
+  f_categorie: "Catégorie"
+  f_distance: "Distance"
+  f_coefficient: "Coefficient"
+  f_qualificative: "Qualificative"
+  oui: "Oui ✅"
+  non: "Non"
+  heure_a_confirmer: "(heure à confirmer)"
+  estimation: "(estimation, tracé indicatif)"
+  course_terminee: "Course terminée"
+  resultats_a_venir: "Course terminée · résultats à venir"
+  course_en_cours: "● Course en cours"
+  suivi_direct: "Cartographie en direct"
+  suivi_bientot: "Le lien vers la cartographie en direct sera ajouté ici avant le départ."
+  la_carte: "La carte"
+  regles: "Règles & documents"
+  toutes_courses: "← Toutes les courses"
+  a_venir: "À venir"
+  courues: "Courues"
+  # Classement
+  au_championnat: "au championnat"
+  c_skipper: "Skipper"
+  c_bateau: "Bateau"
+  c_points: "Points"
+  maj_le: "Mis à jour le"
+  classement_complet: "classement complet sur classemini.com"
+  pas_de_classement: "Pas encore de classement : les premières courses sont prévues à partir de mars 2027. Rendez-vous ici après la première ligne d'arrivée !"
+  qualif_titre: "Qualification Mini Transat"
+  qualif_milles: "milles en course"
+  qualif_conditions:
+    - "Au moins 2 épreuves, dont une en solitaire"
+    - "Une course de plus de 500 milles sans escale"
+    - "Une épreuve de [niveau C ou B](/journal/2026/11/les-categories-de-courses/) finie en 2027"
+    - "Parcours hors course de 1000 milles en solitaire, sans escale"
+  # Sponsors
+  sponsor_titre: "🤝 En recherche de sponsors"
+  sponsor_texte: "Envie d'embarquer dans l'aventure ? Je cherche des partenaires pour la saison de qualification et la Mini Transat 2027."
+  sponsor_bouton: "Me contacter"
+  sponsor_sujet: "Partenariat Big Bounce 1019"
+  # J'aime & commentaires
+  jaime: "j'aime"
+  commentaires: "Commentaires"
+  prenom: "Prénom"
+  commentaire: "Commentaire"
+  placeholder: "Un mot pour Coco…"
+  publier: "Publier"
+  demo: "Mode démo : les j'aime et commentaires restent dans ce navigateur. Voir COMMENTAIRES.md pour les rendre visibles par tous."
+en:
+  accueil: /en/
+  autre_langue: "Français"
+  autre_code: FR
+  mois: [January, February, March, April, May, June, July, August, September, October, November, December]
+  jours: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
+  cd_unites: [days, hours, min, sec]
+  cd_fini: "And they're off! ⛵"
+  avant_depart: "Until the start"
+  objectif: "The goal"
+  depart_le: "Start on"
+  transat_resume: "Solo, with no way of communicating with land."
+  voir_parcours: "See the course"
+  journal: "Logbook"
+  tout_journal: "Full logbook →"
+  journal_url: /en/journal/
+  epingles: "📌 Pinned"
+  recits: "Latest stories"
+  explicatifs: "⛵ Explainer posts"
+  en_bref: "News"
+  toutes_breves: "All news →"
+  breves_url: /en/news/
+  lire: "Read →"
+  prochaine_course: "Next race"
+  calendrier_bientot: "The Classe Mini 2027 calendar comes out at the end of December. The first qualifying races start in March!"
+  calendrier: "Race calendar →"
+  courses_url: /en/races/
+  classement_titre: "My ranking"
+  classement_url: /en/ranking/
+  details: "Details →"
+  milles: miles
+  coef: coef.
+  qualificative: "Qualifying"
+  f_depart: "Start"
+  f_niveau: "Level"
+  f_parcours: "Course"
+  f_equipage: "Crew"
+  f_categorie: "Category"
+  f_distance: "Distance"
+  f_coefficient: "Coefficient"
+  f_qualificative: "Qualifying race"
+  oui: "Yes ✅"
+  non: "No"
+  heure_a_confirmer: "(time to be confirmed)"
+  estimation: "(estimate, indicative route)"
+  course_terminee: "Race finished"
+  resultats_a_venir: "Race finished · results to come"
+  course_en_cours: "● Race in progress"
+  suivi_direct: "Live tracking"
+  suivi_bientot: "The live tracking link will be added here before the start."
+  la_carte: "The map"
+  regles: "Rules & documents"
+  toutes_courses: "← All races"
+  a_venir: "Upcoming"
+  courues: "Raced"
+  au_championnat: "in the championship"
+  c_skipper: "Skipper"
+  c_bateau: "Boat"
+  c_points: "Points"
+  maj_le: "Updated on"
+  classement_complet: "full ranking on classemini.com"
+  pas_de_classement: "No ranking yet: the first races start in March 2027. See you here after the first finish line!"
+  qualif_titre: "Mini Transat qualification"
+  qualif_milles: "race miles"
+  qualif_conditions:
+    - "At least 2 events, including one solo"
+    - "One non-stop race of more than 500 miles"
+    - "One [level C or B](/en/journal/2026/11/race-levels/) event finished in 2027"
+    - "1000-mile solo qualifying course outside races, non-stop"
+  sponsor_titre: "🤝 Looking for sponsors"
+  sponsor_texte: "Want to come aboard? I'm looking for partners for the qualifying season and the 2027 Mini Transat."
+  sponsor_bouton: "Contact me"
+  sponsor_sujet: "Big Bounce 1019 partnership"
+  jaime: "likes"
+  commentaires: "Comments"
+  prenom: "First name"
+  commentaire: "Comment"
+  placeholder: "A word for Coco…"
+  publier: "Post"
+  demo: "Demo mode: likes and comments stay in this browser. See COMMENTAIRES.md to make them public."

@@ -1,0 +1,9 @@
+{%- comment -%} Compte à rebours en direct. Paramètres : cible (date), titre, petit (bool) {%- endcomment -%}
+{%- assign t = site.data.i18n[page.lang] | default: site.data.i18n.fr -%}
+<div class="countdown{% if include.petit %} countdown--petit{% endif %}" data-cible="{{ include.cible | date_to_xmlschema }}">
+  {% if include.titre %}<p class="countdown__titre">{{ include.titre }}</p>{% endif %}
+  <div class="countdown__cases">
+    {% assign u = "j,h,m,s" | split: "," %}{% for k in u %}<span><b data-u="{{ k }}">–</b><small>{{ t.cd_unites[forloop.index0] }}</small></span>{% endfor %}
+  </div>
+  <p class="countdown__fini" hidden>{{ t.cd_fini }}</p>
+</div>

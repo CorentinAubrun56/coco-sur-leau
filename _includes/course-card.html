@@ -1,0 +1,23 @@
+{%- comment -%} Paramètre : course (document de la langue courante) {%- endcomment -%}
+{%- assign t = site.data.i18n[page.lang] | default: site.data.i18n.fr -%}
+{%- assign r = include.course -%}
+{%- assign d = site.data.courses | where: "ref", r.ref | first -%}
+<a class="carte-course" href="{{ r.url | relative_url }}">
+  <div class="carte-course__date">
+    <b>{{ d.depart | date: "%-d" }}</b>
+    <span>{% include date.html date=d.depart mois_seul=true %}</span>
+    <small>{{ d.depart | date: "%Y" }}</small>
+  </div>
+  <div class="carte-course__corps">
+    <h3>{{ r.title }}</h3>
+    <p>{{ r.lieu_depart }}{% for e in r.escales %} → {{ e }}{% endfor %} → {{ r.lieu_arrivee }}</p>
+    <ul class="pastilles">
+      {% if r.niveau %}<li class="pastille--niveau">{{ r.niveau }}</li>{% endif %}
+      {% if r.equipage %}<li>{{ r.equipage }}</li>{% endif %}
+      {% if r.categorie %}<li>{{ r.categorie }}</li>{% endif %}
+      {% if d.distance %}<li>{{ d.distance }} {{ t.milles }}</li>{% endif %}
+      {% if d.coefficient %}<li>{{ t.coef }} {{ d.coefficient }}</li>{% endif %}
+      {% if d.qualificative %}<li class="pastille--qualif">{{ t.qualificative }}</li>{% endif %}
+    </ul>
+  </div>
+</a>

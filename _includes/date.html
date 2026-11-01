@@ -1,0 +1,12 @@
+{%- comment -%} Date localisée. Paramètres : date, jour (avec le jour de la semaine), sans_annee, mois_seul {%- endcomment -%}
+{%- assign _t = site.data.i18n[page.lang] | default: site.data.i18n.fr -%}
+{%- assign _im = include.date | date: "%-m" | minus: 1 -%}
+{%- assign _iw = include.date | date: "%w" | plus: 0 -%}
+{%- assign _m = _t.mois[_im] -%}
+{%- assign _j = _t.jours[_iw] -%}
+{%- assign _d = include.date | date: "%-d" -%}
+{%- assign _y = include.date | date: "%Y" -%}
+{%- if include.mois_seul -%}{{ _m }}
+{%- elsif page.lang == "en" -%}{% if include.jour %}{{ _j }}, {% endif %}{{ _m }} {{ _d }}{% unless include.sans_annee %}, {{ _y }}{% endunless %}
+{%- else -%}{% if include.jour %}{{ _j }} {% endif %}{{ _d }}{% if _d == "1" %}er{% endif %} {{ _m }}{% unless include.sans_annee %} {{ _y }}{% endunless %}
+{%- endif -%}

@@ -1,0 +1,12 @@
+fr:
+  - { title: "Journal", url: /journal/ }
+  - { title: "Courses", url: /courses/ }
+  - { title: "Mini Transat 2027", url: /courses/mini-transat-2027/ }
+  - { title: "Classement", url: /classement/ }
+  - { title: "À propos", url: /a-propos/ }
+en:
+  - { title: "Journal", url: /en/journal/ }
+  - { title: "Races", url: /en/races/ }
+  - { title: "Mini Transat 2027", url: /en/races/mini-transat-2027/ }
+  - { title: "Ranking", url: /en/ranking/ }
+  - { title: "About", url: /en/about/ }

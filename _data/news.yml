@@ -1,0 +1,10 @@
+# Les brèves : de petites news datées, sans faire un article complet.
+# Champs : date (publication), fr, en, ref (optionnel : article lié, même « ref » que l'article).
+- date: 2026-11-01
+  fr: "🇦🇺 Retour d'Australie le 22 janvier ! Ensuite, direction le chantier pour préparer Big Bounce."
+  en: "🇦🇺 Back from Australia on 22 January! Then straight to the boatyard to get Big Bounce ready."
+
+- date: 2026-11-01
+  fr: "⛵ C'est officiel : Big Bounce, Mini 6.50 n°1019, est à nous !"
+  en: "⛵ It's official: Big Bounce, Mini 6.50 #1019, is ours!"
+  ref: aventure-commence

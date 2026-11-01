@@ -1,0 +1,14 @@
+coco:
+  name: "Corentin Aubrun"
+  avatar: "/assets/images/corentin-aubrun.jpg"
+  home: "/a-propos/"
+  bio: "Skipper de Big Bounce, Mini 6.50 n°1019. Objectif : la Mini Transat 2027."
+  links:
+    - { label: "Instagram", icon: "fab fa-fw fa-instagram", url: "https://www.instagram.com/aubruncorentin/" }
+coco-en:
+  name: "Corentin Aubrun"
+  avatar: "/assets/images/corentin-aubrun.jpg"
+  home: "/en/about/"
+  bio: "Skipper of Big Bounce, Mini 6.50 #1019. Goal: the 2027 Mini Transat."
+  links:
+    - { label: "Instagram", icon: "fab fa-fw fa-instagram", url: "https://www.instagram.com/aubruncorentin/" }

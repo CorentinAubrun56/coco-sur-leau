@@ -1,0 +1,23 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+{%- comment -%} Liens vers la version dans l'autre langue (référencement) {%- endcomment -%}
+{%- if page.ref -%}
+  {%- assign docs = site.posts | concat: site.pages | concat: site.courses -%}
+  {%- for d in docs -%}{%- if d.ref == page.ref -%}<link rel="alternate" hreflang="{{ d.lang }}" href="{{ d.url | absolute_url }}">{%- endif -%}{%- endfor -%}
+{%- endif -%}
+{%- comment -%} header.position : cadrage de la photo du bandeau (ex. "55% 20%") {%- endcomment -%}
+{%- if page.header.position -%}<style>.page__hero--overlay { background-position: {{ page.header.position }}; }</style>{%- endif -%}
+{%- comment -%} Accueil : on envoie le visiteur vers sa langue (choix mémorisé, sinon langue du navigateur) {%- endcomment -%}
+{%- if page.ref == "accueil" and page.lang == "fr" -%}
+<script>
+  (function () {
+    try {
+      var choix = localStorage.getItem("coco-lang");
+      var langue = choix || ((navigator.language || "fr").toLowerCase().indexOf("fr") === 0 ? "fr" : "en");
+      if (langue === "en") location.replace("{{ '/en/' | relative_url }}");
+    } catch (e) {}
+  })();
+</script>
+{%- endif -%}

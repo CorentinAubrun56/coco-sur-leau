@@ -1,0 +1,5 @@
+{%- comment -%} Mini-carte Leaflet. Paramètre : points (liste {nom, lat, lon, type}) {%- endcomment -%}
+<figure class="carte">
+  <div class="carte__map" data-points='{{ include.points | jsonify | escape }}'{% if include.seamarks %} data-seamarks="1"{% endif %}></div>
+  {% unless include.sans_distance %}<figcaption class="carte__legende"></figcaption>{% endunless %}
+</figure>

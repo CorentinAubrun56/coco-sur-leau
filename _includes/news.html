@@ -1,0 +1,12 @@
+{%- assign t = site.data.i18n[page.lang] | default: site.data.i18n.fr -%}
+{%- assign _news = site.data.news | sort: "date" | reverse -%}
+<ul class="breves">
+  {% for n in _news limit: include.limit %}
+  {%- assign lien = nil -%}
+  {%- if n.ref -%}{%- assign lien = site.posts | where: "ref", n.ref | where: "lang", page.lang | first -%}{%- endif -%}
+  <li class="breve">
+    <time datetime="{{ n.date | date: '%Y-%m-%d' }}">{% include date.html date=n.date %}</time>
+    <span>{{ n[page.lang] | default: n.fr | markdownify | remove: "<p>" | remove: "</p>" }}{% if lien %} <a href="{{ lien.url | relative_url }}">{{ t.lire }}</a>{% endif %}</span>
+  </li>
+  {% endfor %}
+</ul>
