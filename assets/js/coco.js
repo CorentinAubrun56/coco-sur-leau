@@ -13,6 +13,15 @@
     });
   });
 
+  /* ---------- Liens externes : nouvel onglet ---------- */
+  document.addEventListener("click", function (e) {
+    var lien = e.target.closest && e.target.closest("a[href]");
+    if (lien && lien.host && lien.host !== location.host) {
+      lien.target = "_blank";
+      lien.rel = "noopener";
+    }
+  });
+
   /* ---------- Comptes à rebours ---------- */
   document.querySelectorAll(".countdown").forEach(function (el) {
     var cible = new Date(el.dataset.cible).getTime();
@@ -128,27 +137,9 @@
     };
   }
 
-  function apiDemo() {
-    function lire(k, d) { var v = stock(k); return v == null ? d : v; }
-    return {
-      likes: function (id) { return Promise.resolve(lire("demo-likes:" + id, 0)); },
-      like: function (id, plus) {
-        var n = Math.max(0, lire("demo-likes:" + id, 0) + (plus ? 1 : -1));
-        stock("demo-likes:" + id, n);
-        return Promise.resolve(n);
-      },
-      commentaires: function (id) { return Promise.resolve(lire("demo-com:" + id, [])); },
-      commenter: function (id, name, message) {
-        var c = { name: name, message: message, created_at: new Date().toISOString() };
-        stock("demo-com:" + id, lire("demo-com:" + id, []).concat([c]));
-        return Promise.resolve(c);
-      }
-    };
-  }
-
-  document.querySelectorAll(".soutien[data-mode]").forEach(function (el) {
+  document.querySelectorAll(".soutien").forEach(function (el) {
     var id = el.dataset.id;
-    var api = el.dataset.mode === "supabase" ? apiSupabase(el.dataset.url, el.dataset.key) : apiDemo();
+    var api = apiSupabase(el.dataset.url, el.dataset.key);
     var bouton = el.querySelector(".soutien__like");
     var nb = el.querySelector(".soutien__nb");
     var nbCom = el.querySelector(".soutien__nbcom");

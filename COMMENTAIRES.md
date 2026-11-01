@@ -4,7 +4,7 @@ Le site est statique (GitHub Pages) : pour que les j'aime et les commentaires so
 et visibles par tout le monde, il faut une petite base de données. On utilise **Supabase**
 (offre gratuite largement suffisante). Les visiteurs n'ont pas besoin de compte.
 
-Sans configuration, le bloc fonctionne en **mode démo** : tout reste dans le navigateur de la personne.
+Sans configuration, le bloc j'aime et commentaires n'est pas affiché.
 
 ## 1. Créer le projet
 

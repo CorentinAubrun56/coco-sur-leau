@@ -1,6 +1,6 @@
 ---
 ref: breves
-title: "En bref"
+title: "Dernières news"
 permalink: /breves/
 excerpt: "Les petites nouvelles, en attendant le prochain article."
 ---

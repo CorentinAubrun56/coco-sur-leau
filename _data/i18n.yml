@@ -19,9 +19,10 @@ fr:
   epingles: "📌 À la une"
   recits: "Derniers récits"
   explicatifs: "⛵ Posts explicatifs"
-  en_bref: "Dernières News"
-  toutes_breves: "Toutes les brèves →"
+  en_bref: "Dernières news"
+  toutes_breves: "Toutes les news →"
   breves_url: /breves/
+  credit_photo: "Photo : Corentin Aubrun"
   lire: "Lire →"
   prochaine_course: "Prochaine course"
   calendrier_bientot: "Le calendrier 2027 de la Classe Mini sort fin décembre. Les premières courses de qualification démarrent en mars !"
@@ -83,7 +84,6 @@ fr:
   commentaire: "Commentaire"
   placeholder: "Un mot pour Coco…"
   publier: "Publier"
-  demo: "Mode démo : les j'aime et commentaires restent dans ce navigateur. Voir COMMENTAIRES.md pour les rendre visibles par tous."
 en:
   accueil: /en/
   autre_langue: "Français"
@@ -106,6 +106,7 @@ en:
   en_bref: "News"
   toutes_breves: "All news →"
   breves_url: /en/news/
+  credit_photo: "Photo: Corentin Aubrun"
   lire: "Read →"
   prochaine_course: "Next race"
   calendrier_bientot: "The Classe Mini 2027 calendar comes out at the end of December. The first qualifying races start in March!"
@@ -163,4 +164,3 @@ en:
   commentaire: "Comment"
   placeholder: "A word for Coco…"
   publier: "Post"
-  demo: "Demo mode: likes and comments stay in this browser. See COMMENTAIRES.md to make them public."

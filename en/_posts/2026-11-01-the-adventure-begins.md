@@ -8,6 +8,7 @@ header:
   overlay_image: /assets/images/posts/2026-11-01-l-aventure-commence/big-bounce-1019-sur-sa-remorque.jpg
   overlay_filter: 0.4
   position: "55% 22%"
+  caption: "Photo: Corentin Aubrun"
   teaser: /assets/images/posts/2026-11-01-l-aventure-commence/big-bounce-1019-sur-sa-remorque.jpg
 gallery:
   - url: /assets/images/posts/2026-11-01-l-aventure-commence/big-bounce-1019-sur-sa-remorque.jpg
@@ -22,7 +23,7 @@ It's official: we just bought a **Mini 6.50**!! 🎉 For those who don't know, i
 
 Meet **Big Bounce, number 1019** (and her mast)! 🔥
 
-{% include gallery caption="Big Bounce on her trailer, and her mast waiting in the mast park." %}
+{% include gallery class="empile" caption="Big Bounce on her trailer, and her mast waiting in the mast park. · Photos: Corentin Aubrun" %}
 
 ## 🎯 The goal: qualify for the Mini Transat!
 

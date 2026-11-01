@@ -16,9 +16,12 @@ $link-color-hover: $rouge;
 $link-color-visited: $marine;
 $masthead-link-color: $marine;
 $masthead-link-color-hover: $rouge;
-$caption-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$sans-serif-narrow: $sans-serif;
+$global-font-family: $sans-serif;
+$caption-font-family: $sans-serif;
 $max-width: 100%;
-$header-font-family: "Barlow Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$header-font-family: $sans-serif;
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
 @import "minimal-mistakes";
@@ -31,8 +34,16 @@ h1, h2, h3, .page__title, .site-title { letter-spacing: 0.01em; }
 .page__hero--overlay .page__title { font-size: 3.4em; }
 .note { background: $ecume; border-left: 4px solid $marine; padding: 0.8em 1em; font-size: 0.9em; }
 .petit { font-size: 0.8em; color: $muted-text-color; }
-.photo-portrait { display: block; width: 100%; border-radius: 12px; margin-bottom: 1.5em; }
+.photo { display: block; margin: 0 0 1.5em;
+  img { display: block; width: 100%; border-radius: 12px; margin-bottom: 0; } }
 .photo-verticale { max-width: 480px; margin-inline: auto; }
+/* Galerie avec class="empile" : les photos l'une sous l'autre, en pleine largeur */
+figure.empile { > a, > img { width: 100%; margin-bottom: 1em; } img { display: block; width: 100%; margin-bottom: 0; }
+  > a:last-of-type, > img:last-of-type { margin-bottom: 0; } }
+/* Légendes : lisibles et collées sous la photo */
+.page__content figure figcaption { font-size: 0.85em; margin: 0.35em 0 0; }
+/* Le titre de la page n'est pas un lien vers elle-même */
+.page__title a { color: inherit; text-decoration: none; pointer-events: none; }
 details.english { margin-top: 2em; padding: 0.8em 1em; background: $ecume; border-radius: 6px; font-size: 0.9em;
   summary { cursor: pointer; font-weight: bold; } }
 
@@ -195,7 +206,6 @@ body:not(.wide) .page {
   label { font-size: 0.85em; font-weight: bold; }
   textarea { resize: vertical; }
 }
-.soutien__demo { font-size: 0.75em; padding: 0.4em 0.8em; background: #fff3cd; border-radius: 4px; }
 .soutien__like {
   display: inline-flex; align-items: center; gap: 0.4em; cursor: pointer;
   font-size: 1em; padding: 0.5em 1.1em; border-radius: 999px;

@@ -29,7 +29,7 @@ instagram: "aubruncorentin"
 email_sponsor: "cocoaubrun@gmail.com"
 
 # --- J'aime & commentaires sous chaque article ------------------------------
-# Sans configuration : mode démo en local (stocké dans le navigateur uniquement).
+# Sans configuration : le bloc n'est pas affiché.
 # Pour qu'ils soient enregistrés et visibles par tous : voir COMMENTAIRES.md
 # (base Supabase gratuite, ~5 minutes).
 commentaires:

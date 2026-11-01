@@ -1,0 +1,10 @@
+{%- comment -%}
+  Photo avec légende et crédit.
+  {% include photo.html src="/assets/images/…jpg" alt="…" legende="…" classe="photo-verticale" credit="Photo : Quelqu'un" %}
+  legende, classe et credit sont facultatifs ; le crédit par défaut est dans _data/i18n.yml (credit_photo).
+{%- endcomment -%}
+{%- assign t = site.data.i18n[page.lang] -%}
+<figure class="photo {{ include.classe }}">
+  <img src="{{ include.src | relative_url }}" alt="{{ include.alt }}" loading="lazy">
+  <figcaption>{% if include.legende %}{{ include.legende }} · {% endif %}{{ include.credit | default: t.credit_photo }}</figcaption>
+</figure>

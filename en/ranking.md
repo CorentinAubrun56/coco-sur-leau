@@ -6,4 +6,4 @@ excerpt: "My place in the Classe Mini championship and my progress towards quali
 ---
 {% include classement.html autour=3 %}
 
-The full official ranking is published by the [Classe Mini](https://www.classemini.com/). I copy it here after each race. The qualification rules are explained in [this post]({{ '/en/journal/2026/11/race-levels/' | relative_url }}).
+The full official ranking is published by the [Classe Mini](https://www.classemini.com/). The qualification rules are explained in [this post]({{ '/en/journal/2026/11/race-levels/' | relative_url }}).

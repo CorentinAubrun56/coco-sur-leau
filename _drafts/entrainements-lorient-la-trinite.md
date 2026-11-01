@@ -11,7 +11,7 @@ header:
 
 Avant les premières courses de mars, il faut naviguer, naviguer, naviguer ! Je m'entraînerai soit à **Lorient**, soit à **La Trinité-sur-Mer**, en fonction des places disponibles.
 
-![Corentin en navigation]({{ '/assets/images/posts/entrainements/corentin-en-navigation.jpg' | relative_url }}){: .photo-portrait .photo-verticale}
+{% include photo.html src="/assets/images/posts/entrainements/corentin-en-navigation.jpg" alt="Corentin en navigation" classe="photo-verticale" %}
 
 {% include course-map.html seamarks=true sans_distance=true points=site.data.entrainements %}
 
